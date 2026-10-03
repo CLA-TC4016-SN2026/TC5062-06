@@ -1,4 +1,4 @@
-﻿# TC5062 - Plataforma de servicios para el hogar con técnicos verificados
+﻿# TC5062-06 - Plataforma de servicios para el hogar con técnicos verificados
 **Equipo:** 06  
 **Integrantes:**
 - A01797418 - Luis Manuel Mendoza Cruz
