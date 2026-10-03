@@ -1,4 +1,4 @@
-﻿# TC5062 - Proyecto de Ciberseguridad y Desarrollo Seguro
+﻿# TC5062 - Plataforma de servicios para el hogar con técnicos verificados
 **Equipo:** 06  
 **Integrantes:**
 - A01797418 - Luis Manuel Mendoza Cruz
