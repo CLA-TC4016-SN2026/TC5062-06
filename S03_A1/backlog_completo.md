@@ -1,274 +1,258 @@
-# Product Backlog — FairFix
+# Backlog del producto — FairFix
 
-**Proyecto:** FairFix, plataforma de servicios para el hogar con técnicos verificados  
-**Versión:** 1.0  
-**Fecha:** 3 de octubre de 2026  
-**Documento fuente:** `SRS_equipo.md` (v2.0)  
-**Convención de estimación:** Escala Fibonacci (1, 2, 3, 5, 8, 13 Story Points).
+**Fuente:** `SRS_equipo.md`
+**Fecha:** 3 de octubre de 2026
+**Versión:** ajustada por el equipo (ver `ajustes_backlog.md`)
 
----
+## Convenciones
 
-## 1. Definición de Épicas
+- **Historia:** Como [tipo de usuario], quiero [acción], para [beneficio].
+- **Criterios de aceptación:** cada uno tiene un ID `HU-XX-CA-N` y, entre paréntesis, los criterios del SRS de los que sale (`RF-XX-AC-N`). El criterio del SRS es el canónico; el de la historia es su resumen para planear.
+- **Estimación:** story points en escala Fibonacci (1, 2, 3, 5, 8, 13). Es una estimación inicial relativa: HU-08 (cambiar el estado de un servicio) se tomó como referencia de 3 puntos.
+- **Prioridad:** Alta = necesaria para el flujo básico de un servicio; Media = importante, entra después del flujo básico; Baja = se hace si queda tiempo en las 12 semanas.
+- **IDs con sufijo:** las historias que resultaron de dividir otra conservan el número original con sufijo (`HU-02a`, `HU-02b`, `HU-11a`, `HU-11b`) para no renumerar el resto.
+- **Alcance del backlog:** 18 historias que cubren el flujo completo de un servicio (18 de los 27 RF del SRS). Los RF que quedaron fuera de este backlog inicial están listados al final.
 
-Para organizar el alcance en incrementos coherentes de producto durante las 12 semanas de desarrollo, el trabajo se agrupa en 4 épicas:
+## Épicas
 
-- **ÉPICA 1: Autenticación, Identidad y Confianza (AIC)**  
-  Abarca el acceso seguro por teléfono/código sin contraseña para clientes y técnicos, MFA para administradores y el flujo de validación documental y antecedentes para garantizar la confianza de la plataforma.
-- **ÉPICA 2: Catálogo, Búsqueda y Contratación con Precios Justos (CPC)**  
-  Cubre la administración del catálogo de servicios con rangos de referencia, la oferta y disponibilidad del técnico, la solicitud con cotización previa transparente y el acuerdo inicial inmutable.
-- **ÉPICA 3: Ejecución de Servicio, Control de Cambios y Notificaciones (ESC)**  
-  Gestiona la máquina de estados del ciclo de vida del servicio, el registro y autorización estricta de costos adicionales con evidencia fotográfica y las alertas multicanal (WhatsApp/SMS).
-- **ÉPICA 4: Custodia de Pagos, Cierre, Garantía y Soporte Accesible (PCG)**  
-  Comprende la retención (escrow) y liberación de pagos (confirmación o regla de 72 h), resolución de inconformidades, recibos, calificaciones, garantía posterior y modo simplificado para adultos mayores.
-
----
-
-## 2. Resumen del Product Backlog
-
-| ID | Historia de Usuario | Épica | SP | Prioridad |
-|---|---|---|:---:|:---:|
-| **US-01** | Inicio de sesión con teléfono y código de acceso sin contraseña | AIC | 5 | Alta |
-| **US-02** | Validación y verificación documental de técnicos por administrador | AIC | 8 | Alta |
-| **US-03** | Gestión del catálogo de servicios con rangos de referencia y límites | CPC | 5 | Alta |
-| **US-04** | Registro de disponibilidad y cotización por trabajo del técnico | CPC | 5 | Alta |
-| **US-05** | Creación de solicitud de servicio y cotización previa transparente | CPC | 5 | Alta |
-| **US-06** | Selección y contratación de técnico con acuerdo inicial inmutable | CPC | 5 | Alta |
-| **US-07** | Solicitud y cotización de trabajos especiales fuera de catálogo | CPC | 8 | Media |
-| **US-08** | Retención de pago en pasarela al confirmar contratación | PCG | 8 | Alta |
-| **US-09** | Seguimiento y avance de estados del servicio en tiempo real | ESC | 5 | Alta |
-| **US-10** | Solicitud y aprobación explícita de costos adicionales con evidencia | ESC | 8 | Alta |
-| **US-11** | Notificaciones críticas del servicio por WhatsApp con respaldo SMS | ESC | 5 | Alta |
-| **US-12** | Confirmación de trabajo, liberación de fondos y recibo digital | PCG | 5 | Alta |
-| **US-13** | Apertura y resolución administrativa de inconformidades | PCG | 8 | Alta |
-| **US-14** | Liberación automática de pago a las 72 horas con recordatorio | PCG | 3 | Media |
-| **US-15** | Flujo de contratación en modo simplificado para adultos mayores | PCG | 5 | Alta |
-
-**Total de Story Points:** 88 SP
+| Épica | Nombre | Qué agrupa | RF del SRS | Historias | Puntos |
+|---|---|---|---|---|---|
+| EP-01 | Cuentas y técnicos verificados | Acceso por rol, validación de técnicos y su oferta de trabajos | RF-01, RF-03, RF-17 | HU-01, HU-02a, HU-02b, HU-03 | 18 |
+| EP-02 | Solicitud, cotización y contratación | Catálogo, solicitud, perfiles, cotización previa y contratación | RF-02, RF-04, RF-05, RF-06, RF-16 | HU-04 a HU-07 | 18 |
+| EP-03 | Ejecución del servicio | Estados, notificaciones y costos adicionales | RF-07, RF-08, RF-09 | HU-08 a HU-10 | 24 |
+| EP-04 | Pago, cierre y reputación | Pago retenido, liberación, inconformidad, recibo y calificación | RF-10, RF-11, RF-13, RF-14, RF-20 | HU-11a, HU-11b, HU-12 a HU-14 | 32 |
+| EP-05 | Accesibilidad y ayuda | Modo simplificado y ayuda con personas | RF-15, RF-21 | HU-15 a HU-16 | 13 |
+| | **Total** | | 18 RF | **18 historias** | **105** |
 
 ---
 
-## 3. Detalle de Historias de Usuario
+## EP-01: Cuentas y técnicos verificados
 
-### ÉPICA 1: Autenticación, Identidad y Confianza (AIC)
+### HU-01: Inicio de sesión sin contraseña
+**Como** cliente, **quiero** registrarme e iniciar sesión con mi número de teléfono y un código que me llega por WhatsApp, **para** entrar a la plataforma sin tener que recordar una contraseña.
 
-#### US-01: Inicio de sesión con teléfono y código de acceso sin contraseña
-- **Historia:**  
-  Como **cliente o técnico**,  
-  quiero **iniciar sesión usando únicamente mi número de teléfono y un código de un solo uso recibido por WhatsApp o SMS**,  
-  para **acceder de forma segura a la plataforma sin tener que recordar ni gestionar contraseñas complejas**.
-- **Criterios de Aceptación:**
-  - **AC-01.1 (Ref: RF-01-AC-5, RF-01-AC-6):** Dado que un cliente o técnico registrado ingresa su número telefónico, cuando introduce el código correcto dentro de los 10 minutos de vigencia, el sistema inicia la sesión y expone el rol correspondiente sin solicitar contraseña. Si el código es incorrecto o venció, el sistema responde con error 401 permitiendo solicitar uno nuevo.
-  - **AC-01.2 (Ref: RF-01-AC-8, RF-01-AC-9):** Dado que se envía un código por WhatsApp, si pasan 2 minutos sin entrega confirmada, el sistema envía el código automáticamente por SMS. Tras 5 intentos fallidos consecutivos, el acceso para dicho teléfono queda bloqueado por 15 minutos y se muestra enlace a "Necesito ayuda".
-- **Estimación:** 5 Story Points *(Justificación: Requiere integración con proveedor de mensajería para WhatsApp/SMS, lógica de tokens OTP con expiración y control de bloqueo por intentos fallidos).*
-- **Prioridad:** Alta
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-01
+- **HU-01-CA-1** (RF-01-AC-1, RF-01-AC-5): **Dado que** ingresé mi teléfono y recibí un código, **cuando** escribo el código correcto antes de 10 minutos, **entonces** entro a mi cuenta sin que se me pida contraseña; si el teléfono es nuevo, se me piden nombre y dirección para crear la cuenta.
+- **HU-01-CA-2** (RF-01-AC-6, RF-01-AC-8): **Dado que** recibí un código, **cuando** escribo uno incorrecto o vencido, **entonces** no entro y puedo pedir otro; tras 5 errores seguidos el teléfono se bloquea 15 minutos y se me ofrece "Necesito ayuda".
+- **HU-01-CA-3** (RF-01-AC-9): **Dado que** el código se envió por WhatsApp, **cuando** pasan 2 minutos sin confirmación de entrega, **entonces** lo recibo por SMS.
+- **HU-01-CA-4** (RF-01-AC-7): **Dado que** tengo sesión como cliente, **cuando** intento usar una función de técnico o de administrador, **entonces** el sistema responde 403 y no cambia ningún dato.
 
----
+### HU-02a: Enviar documentos y acreditar experiencia
+**Como** técnico, **quiero** enviar mis documentos y acreditar mi experiencia aunque no tenga certificación, **para** que la plataforma me valide y pueda recibir solicitudes.
 
-#### US-02: Validación y verificación documental de técnicos por administrador
-- **Historia:**  
-  Como **administrador de FairFix**,  
-  quiero **revisar la INE, selfie, comprobante de domicilio, carta de no antecedentes y acreditación de experiencia de los técnicos postulantes**,  
-  para **aprobar únicamente a técnicos confiables y mostrarlos con la insignia de "Verificado" ante los clientes**.
-- **Criterios de Aceptación:**
-  - **AC-02.1 (Ref: RF-03-AC-1, RF-03-AC-4, RF-03-AC-7):** Dado un técnico en estado "en revisión", cuando el administrador valida y aprueba los 4 documentos y la acreditación de experiencia (certificación o 2 referencias + fotos), el técnico pasa a estado "validado" y se habilita para aparecer en búsquedas públicas. Cualquier intento de cambio por un no-administrador devuelve HTTP 403.
-  - **AC-02.2 (Ref: RF-03-AC-5, RF-03-AC-6):** Dado un técnico en revisión, cuando el administrador decide rechazarlo, el sistema exige ingresar un motivo explícito de rechazo antes de registrarlo; una vez guardado, el técnico recibe la notificación con el motivo para poder corregir su expediente.
-- **Estimación:** 8 Story Points *(Justificación: Módulo administrativo con visor de archivos sensibles cifrados, flujo de estados de validación, manejo de feedback de rechazo y reglas estrictas de control de acceso RBAC).*
-- **Prioridad:** Alta
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-01, RF-03
+- **HU-02a-CA-1** (RF-03-AC-2): **Dado que** me falta alguno de los cuatro documentos (INE, selfie, comprobante de domicilio, carta de no antecedentes), **cuando** intento enviarlos a revisión, **entonces** el sistema no los envía y me dice cuál falta.
+- **HU-02a-CA-2** (RF-03-AC-3, RF-03-AC-8, RF-03-AC-9): **Dado que** cargué los cuatro documentos, **cuando** acredito mi experiencia con una certificación, o con al menos una foto de un trabajo anterior y dos referencias, **entonces** mi estado cambia a "en revisión".
+- **HU-02a-CA-3** (RF-03-AC-1): **Dado que** mi estado es "sin validar", "en revisión" o "rechazado", **cuando** un cliente consulta técnicos, **entonces** no aparezco en los resultados.
 
----
+### HU-02b: Validar a un técnico
+**Como** administrador, **quiero** revisar los documentos de un técnico y aprobarlo o rechazarlo con un motivo, **para** que solo personas verificadas entren a las casas de los clientes.
 
-### ÉPICA 2: Catálogo, Búsqueda y Contratación con Precios Justos (CPC)
+- **Prioridad:** Alta · **Estimación:** 3 · **Origen:** RF-03
+- **HU-02b-CA-1** (RF-03-AC-11, RF-03-AC-4): **Dado que** un técnico está "en revisión", **cuando** abro su solicitud y la apruebo, **entonces** veo todos sus documentos, fotos y referencias, y su estado cambia a "validado".
+- **HU-02b-CA-2** (RF-03-AC-5, RF-03-AC-6): **Dado que** un técnico está "en revisión", **cuando** lo rechazo, **entonces** el sistema me exige un motivo, el técnico lo recibe y puede volver a enviar documentos.
+- **HU-02b-CA-3** (RF-03-AC-7): **Dado que** un usuario no es administrador, **cuando** intenta aprobar o rechazar documentos, **entonces** el sistema responde 403.
 
-#### US-03: Gestión del catálogo de servicios con rangos de referencia y límites
-- **Historia:**  
-  Como **administrador**,  
-  quiero **crear y editar categorías, trabajos, rangos de precios de referencia y costos de visita**,  
-  para **mantener un catálogo estandarizado que evite abusos y oriente a clientes y técnicos**.
-- **Criterios de Aceptación:**
-  - **AC-03.1 (Ref: RF-16-AC-1, RF-16-AC-2):** Dado un administrador autenticado, cuando registra un nuevo trabajo con precio mínimo > 0, precio máximo $\le 1.3 \times$ precio mínimo y costo de visita $\ge 0$, el trabajo se guarda como activo. Si el rango supera el 130% o el mínimo es $\le 0$, el sistema rechaza el guardado con código 422.
-  - **AC-03.2 (Ref: RF-16-AC-3, RF-16-AC-4):** Dado un trabajo del catálogo que sufre cambios de rango o desactivación, cuando existen solicitudes previas o servicios ya contratados bajo ese trabajo, el sistema garantiza que los acuerdos y servicios previos mantengan los precios y condiciones originales intactos.
-- **Estimación:** 5 Story Points *(Justificación: Lógica CRUD en base de datos con reglas de validación aritmética estricta [regla del 130%] y versionado de precios para no corromper datos históricos).*
-- **Prioridad:** Alta
+### HU-03: Disponibilidad y cotizaciones del técnico
+**Como** técnico validado, **quiero** registrar mis horarios y el precio que cobro por cada trabajo del catálogo, **para** aparecer solo en las solicitudes que puedo atender y que el cliente conozca mi precio desde el inicio.
+
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-17
+- **HU-03-CA-1** (RF-17-AC-1): **Dado que** registré mis días y horarios, **cuando** un cliente consulta técnicos, **entonces** solo aparezco para ventanas dentro de mi disponibilidad.
+- **HU-03-CA-2** (RF-17-AC-2): **Dado que** elijo un trabajo del catálogo, **cuando** guardo un precio dentro del rango de referencia, **entonces** la cotización se guarda sin pedirme justificación.
+- **HU-03-CA-3** (RF-17-AC-3, RF-17-AC-4): **Dado que** capturo un precio fuera del rango, **cuando** intento guardarlo sin justificación, **entonces** el sistema no lo guarda; con justificación lo guarda y lo marca como fuera de rango.
+- **HU-03-CA-4** (RF-17-AC-5): **Dado que** cambio una cotización, **cuando** la guardo, **entonces** el nuevo precio solo aplica a solicitudes creadas después.
 
 ---
 
-#### US-04: Registro de disponibilidad y cotización por trabajo del técnico
-- **Historia:**  
-  Como **técnico validado**,  
-  quiero **definir mis horarios de trabajo y mi precio cotizado para cada trabajo del catálogo**,  
-  para **recibir solicitudes que se ajusten a mi agenda y mostrar mi cotización por adelantado al cliente**.
-- **Criterios de Aceptación:**
-  - **AC-04.1 (Ref: RF-17-AC-1, RF-17-AC-2):** Dado un técnico con estatus "validado", cuando configura sus días y franjas horarias hábiles y asigna un precio dentro del rango oficial de un trabajo, el sistema guarda su oferta sin solicitar justificación y lo lista como disponible en esas ventanas.
-  - **AC-04.2 (Ref: RF-17-AC-3, RF-17-AC-4, RF-17-AC-6):** Si el técnico ingresa un precio fuera del rango oficial, el sistema bloquea el guardado a menos que proporcione una justificación de texto obligatoria. Si un técnico sin validar intenta usar este módulo, el sistema devuelve HTTP 403.
-- **Estimación:** 5 Story Points *(Justificación: Gestión de ventanas de calendario, validación contra rangos del catálogo y manejo de estados condicionales para tarifas excepcionales).*
-- **Prioridad:** Alta
+## EP-02: Solicitud, cotización y contratación
+
+### HU-04: Catálogo de trabajos y precios de referencia
+**Como** administrador, **quiero** crear, editar y desactivar los trabajos del catálogo con su rango de precio y su costo de visita, **para** que los clientes tengan una referencia de cuánto debería costar cada trabajo.
+
+- **Prioridad:** Alta · **Estimación:** 3 · **Origen:** RF-16
+- **HU-04-CA-1** (RF-16-AC-1, RF-16-AC-2): **Dado que** tengo sesión de administrador, **cuando** guardo un trabajo, **entonces** el sistema solo lo acepta si el mínimo es mayor a cero y el máximo no pasa de 1.3 veces el mínimo.
+- **HU-04-CA-2** (RF-16-AC-3, RF-16-AC-4): **Dado que** un trabajo tiene solicitudes o servicios existentes, **cuando** lo desactivo o cambio su rango, **entonces** deja de ofrecerse en solicitudes nuevas y los servicios ya contratados conservan sus valores.
+- **HU-04-CA-3** (RF-16-AC-5): **Dado que** un usuario no es administrador, **cuando** intenta modificar el catálogo, **entonces** el sistema responde 403.
+
+### HU-05: Crear una solicitud de servicio
+**Como** cliente, **quiero** elegir la categoría y el trabajo, describir mi problema y adjuntar fotos, **para** que un técnico entienda qué necesito antes de venir.
+
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-02
+- **HU-05-CA-1** (RF-02-AC-10, RF-02-AC-1): **Dado que** tengo sesión, **cuando** elijo una categoría, un trabajo activo y escribo una descripción, **entonces** la solicitud se crea en estado "solicitado" y aparece en mi historial.
+- **HU-05-CA-2** (RF-02-AC-2): **Dado que** estoy creando una solicitud, **cuando** omito el trabajo o la descripción, **entonces** el sistema no la crea y nombra el dato faltante.
+- **HU-05-CA-3** (RF-02-AC-4, RF-02-AC-7): **Dado que** voy a adjuntar fotos, **cuando** abro la carga de fotos, **entonces** veo el aviso de fotografiar solo la falla y no puedo adjuntar más de 5.
+- **HU-05-CA-4** (RF-02-AC-5): **Dado que** marco la solicitud como urgente, **cuando** la envío, **entonces** los técnicos disponibles reciben la notificación en máximo 1 minuto.
+
+### HU-06: Consultar técnicos y cotización previa
+**Como** cliente, **quiero** ver los técnicos disponibles con su perfil, su precio y el rango normal del trabajo, **para** elegir con confianza y saber si el precio es justo antes de contratar.
+
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-04, RF-05
+- **HU-06-CA-1** (RF-04-AC-1, RF-04-AC-2): **Dado que** hay técnicos disponibles para mi solicitud, **cuando** los consulto, **entonces** cada uno muestra foto, nombre, marca "Verificado", especialidad, experiencia, calificación (o "Nuevo"), trabajos completados, cotización y comentarios recientes.
+- **HU-06-CA-2** (RF-05-AC-1): **Dado que** elegí ver la cotización de un técnico, **cuando** se muestra, **entonces** veo por separado su precio, el texto "normalmente cuesta entre $X y $Y", la comisión y el total.
+- **HU-06-CA-3** (RF-05-AC-4): **Dado que** el precio del técnico está fuera del rango, **cuando** veo la cotización, **entonces** aparece un aviso con su justificación.
+- **HU-06-CA-4** (RF-04-AC-4, RF-04-AC-6): **Dado que** no hay técnicos disponibles, **cuando** consulto, **entonces** veo un mensaje que lo indica y puedo elegir otro horario o pedir ayuda; en ningún perfil veo documentos, domicilio ni teléfono del técnico.
+
+### HU-07: Contratar a un técnico
+**Como** cliente, **quiero** elegir un técnico y una ventana de horario y que él acepte o rechace, **para** dejar el servicio agendado con el precio que ya vi.
+
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-06
+- **HU-07-CA-1** (RF-06-AC-1): **Dado que** mi solicitud está "solicitado", **cuando** elijo un técnico disponible y confirmo la ventana de horario, **entonces** el técnico recibe la notificación y veo "pendiente de respuesta del técnico".
+- **HU-07-CA-2** (RF-06-AC-3, RF-06-AC-4, RF-06-AC-8): **Dado que** el técnico acepta, **cuando** lo hace, **entonces** el monto es exactamente la cotización que vi, se me pide autorizar el pago y el acuerdo inicial queda guardado sin poder modificarse.
+- **HU-07-CA-3** (RF-06-AC-5, RF-06-AC-7): **Dado que** el técnico rechaza, o no responde una solicitud urgente en 10 minutos, **cuando** eso ocurre, **entonces** la solicitud regresa a "solicitado" y se me ofrecen técnicos alternativos.
 
 ---
 
-#### US-05: Creación de solicitud de servicio y cotización previa transparente
-- **Historia:**  
-  Como **cliente**,  
-  quiero **describir mi necesidad con fotos, indicar urgencia y visualizar el desglose del precio antes de contratar**,  
-  para **saber exactamente cuánto costará el trabajo, cuál es el rango de referencia y qué comisión cobra la plataforma**.
-- **Criterios de Aceptación:**
-  - **AC-05.1 (Ref: RF-02-AC-1, RF-02-AC-4, RF-02-AC-7):** Dado un cliente con sesión, cuando crea una solicitud seleccionando un trabajo y adjunta descripción y hasta 5 fotos, el sistema crea la solicitud en estado `REQUESTED`. La interfaz muestra advertencia de privacidad para fotografiar únicamente la falla antes de subir imágenes.
-  - **AC-05.2 (Ref: RF-05-AC-1, RF-05-AC-4):** Antes de confirmar la contratación, el sistema muestra de forma diferenciada: cotización del técnico, rango de referencia ("normalmente cuesta entre $X y $Y"), comisión de plataforma y total a pagar. Si el técnico cotizó fuera de rango, se despliega la justificación ingresada por el técnico.
-- **Estimación:** 5 Story Points *(Justificación: Pantallas de carga con componentes multimedia [dropzone/cámara], llamadas al motor de cotizaciones y maquetación clara del desglose financiero).*
-- **Prioridad:** Alta
+## EP-03: Ejecución del servicio
+
+### HU-08: Actualizar el estado del servicio
+**Como** técnico, **quiero** marcar con uno o dos toques que voy en camino, que estoy trabajando y que terminé, **para** que el cliente vea el avance de su servicio sin tener que llamarme.
+
+- **Prioridad:** Alta · **Estimación:** 3 · **Origen:** RF-07, RNF-02
+- **HU-08-CA-1** (RF-07-AC-1, RF-07-AC-2): **Dado que** soy el técnico asignado, **cuando** cambio el servicio al estado inmediato siguiente, **entonces** el cambio se guarda; si intento saltar o retroceder un estado, se rechaza.
+- **HU-08-CA-2** (RF-07-AC-3, RF-07-AC-4): **Dado que** el servicio está "terminado" o es de otro técnico, **cuando** intento marcarlo "confirmado" o cambiar su estado, **entonces** el sistema responde 403.
+- **HU-08-CA-3** (RF-07-AC-5, RF-07-AC-6): **Dado que** soy el técnico asignado, **cuando** cambio el estado del servicio, **entonces** el cambio queda registrado con fecha, hora y usuario, y el cliente dueño del servicio ve el nuevo estado y la lista de cambios al consultarlo.
+
+### HU-09: Avisos por WhatsApp con respaldo por SMS
+**Como** cliente, **quiero** recibir por WhatsApp cada cambio importante de mi servicio, **para** enterarme sin tener que abrir la aplicación.
+
+- **Prioridad:** Alta · **Estimación:** 13 · **Origen:** RF-08
+- **HU-09-CA-1** (RF-08-AC-1, RF-08-AC-4): **Dado que** mi servicio cambia de estado, **cuando** el cambio se registra, **entonces** recibo una notificación en la aplicación y un WhatsApp con el identificador del servicio, el trabajo, el nuevo estado y la fecha y hora.
+- **HU-09-CA-2** (RF-08-AC-2, RF-08-AC-3): **Dado que** se envió el WhatsApp, **cuando** pasan 2 minutos sin confirmación de entrega, **entonces** recibo un SMS con el mismo contenido; si se confirma antes, no se envía SMS.
+- **HU-09-CA-3** (RF-08-AC-5, RF-08-AC-6): **Dado que** hay un costo adicional por aprobar, un recordatorio, un pago liberado o una resolución, **cuando** el evento se registra, **entonces** el aviso llega en menos de 1 minuto e incluye el teléfono de respaldo de FairFix.
+
+### HU-10: Autorizar costos adicionales con evidencia
+**Como** cliente, **quiero** ver fotos y explicación de cualquier costo extra y decidir si lo acepto, **para** que nadie me cobre algo que no autoricé.
+
+- **Prioridad:** Alta · **Estimación:** 8 · **Origen:** RF-09
+- **HU-10-CA-1** (RF-09-AC-1, RF-09-AC-2): **Dado que** el servicio está "en proceso", **cuando** el técnico envía un costo adicional, **entonces** el sistema solo lo acepta con monto mayor a cero, descripción y de 1 a 5 fotos.
+- **HU-10-CA-2** (RF-09-AC-7, RF-09-AC-3): **Dado que** recibí un costo adicional, **cuando** lo abro, **entonces** veo fotos, descripción, monto, total actualizado, las opciones "Aceptar", "Rechazar" y "Tengo dudas" y el aviso "si no respondes, este costo no se cobra"; si acepto, el pago retenido aumenta en ese monto.
+- **HU-10-CA-3** (RF-09-AC-4, RF-09-AC-6): **Dado que** rechazo el costo adicional, **cuando** lo hago, **entonces** el total no cambia y el técnico termina lo acordado; si declara que no puede completarlo, el servicio se cierra, él recibe solo el costo de visita y el resto se me reembolsa.
+- **HU-10-CA-4** (RF-09-AC-5, RF-09-AC-10): **Dado que** no respondí un costo adicional, **cuando** el técnico marca "terminado", **entonces** el costo queda rechazado y no entra en el total.
+- **HU-10-CA-5** (RF-09-AC-9): **Dado que** el técnico corrige un error propio, **cuando** lo registra, **entonces** se guarda sin monto y no se me presenta como cobro.
 
 ---
 
-#### US-06: Selección y contratación de técnico con acuerdo inicial inmutable
-- **Historia:**  
-  Como **cliente**,  
-  quiero **elegir a un técnico disponible y confirmar una ventana de llegada**,  
-  para **establecer un acuerdo inicial formal con precio y alcance congelados que evite cargos sorpresivos**.
-- **Criterios de Aceptación:**
-  - **AC-06.1 (Ref: RF-06-AC-1, RF-06-AC-3, RF-06-AC-4):** Dado un técnico disponible, cuando el cliente lo elige, el técnico recibe notificación para aceptar. Al aceptar, el sistema fija la cotización mostrada como monto vinculante, prohibiendo cualquier modificación unilateral de precio por parte del técnico.
-  - **AC-06.2 (Ref: RF-06-AC-8, RD-11):** Una vez que el técnico acepta y se autoriza la retención de pago, el sistema almacena de forma inmutable la fecha, alcance, precio y fotos como "acuerdo inicial", sirviendo de base contractual para cualquier reclamo futuro.
-- **Estimación:** 5 Story Points *(Justificación: Manejo de concurrencia para apartar ventanas horarias, fijación de snapshot inmutable en base de datos y transiciones de estado de servicio).*
-- **Prioridad:** Alta
+## EP-04: Pago, cierre y reputación
+
+### HU-11a: Pagar y retener el pago
+**Como** cliente, **quiero** pagar con tarjeta, transferencia o en OXXO al contratar, **para** dejar el servicio asegurado sin que el técnico reciba el dinero todavía.
+
+- **Prioridad:** Alta · **Estimación:** 8 · **Origen:** RF-10, RNF-04, RNF-08
+- **HU-11a-CA-1** (RF-10-AC-1, RF-10-AC-5): **Dado que** el técnico aceptó, **cuando** autorizo el pago con tarjeta, transferencia u OXXO y la pasarela confirma, **entonces** queda retenido el monto más la comisión y el servicio pasa a "aceptado"; cualquier otro método se rechaza.
+- **HU-11a-CA-2** (RF-10-AC-2, RF-10-AC-7): **Dado que** la pasarela rechaza el pago o todavía no lo reporta como recibido, **cuando** consulto el servicio, **entonces** sigue en "solicitado", no hay cobro registrado y veo el error o la referencia pendiente.
+- **HU-11a-CA-3** (RNF-08): **Dado que** una operación de cobro se envía dos veces, **cuando** se procesa, **entonces** se registra un solo cargo.
+
+### HU-11b: Confirmar el trabajo y liberar el pago
+**Como** cliente, **quiero** confirmar que el trabajo quedó bien para que se le pague al técnico, **para** que el dinero solo salga cuando yo esté conforme.
+
+- **Prioridad:** Alta · **Estimación:** 5 · **Origen:** RF-10
+- **HU-11b-CA-1** (RF-10-AC-3): **Dado que** el servicio está "terminado" sin inconformidad, **cuando** lo confirmo, **entonces** pasa a "confirmado" y se libera al técnico el monto más los costos adicionales aprobados; la comisión queda para la plataforma.
+- **HU-11b-CA-2** (RF-10-AC-6): **Dado que** el servicio "terminado" es de otro cliente, **cuando** un usuario distinto del dueño intenta confirmarlo, **entonces** el sistema responde 403 y no libera el pago.
+- **HU-11b-CA-3** (RF-10-AC-4): **Dado que** el servicio está "terminado", **cuando** no lo confirmo ni reporto inconformidad y no han pasado 72 horas, **entonces** el pago sigue retenido.
+
+### HU-12: Recordatorio y liberación automática del pago
+**Como** técnico, **quiero** que el pago se libere solo si el cliente no responde en 72 horas, **para** no quedarme sin cobrar un trabajo terminado.
+
+- **Prioridad:** Media · **Estimación:** 3 · **Origen:** RF-20
+- **Dependencia:** validar con el stakeholder el plazo de 72 horas (decisión abierta A-3 del SRS). No debe entrar a un sprint antes de esa validación.
+- **HU-12-CA-1** (RF-20-AC-1, RF-20-AC-4): **Dado que** el servicio pasó a "terminado", **cuando** pasan 48 horas sin respuesta del cliente, **entonces** el cliente recibe un recordatorio con la fecha y hora de liberación, que también ve al consultar el servicio.
+- **HU-12-CA-2** (RF-20-AC-2): **Dado que** pasaron 72 horas sin confirmación ni inconformidad, **cuando** se cumple el plazo, **entonces** el servicio pasa a "confirmado", se libera el pago y se genera el recibo.
+- **HU-12-CA-3** (RF-20-AC-3): **Dado que** el cliente reportó una inconformidad antes de las 72 horas, **cuando** se cumple el plazo, **entonces** el pago no se libera.
+
+### HU-13: Reportar y resolver una inconformidad
+**Como** cliente, **quiero** reportar con fotos que el trabajo no quedó bien antes de que se libere el pago, **para** que una persona de FairFix revise mi caso y decida qué procede.
+
+- **Prioridad:** Media · **Estimación:** 8 · **Origen:** RF-11
+- **HU-13-CA-1** (RF-11-AC-1, RF-11-AC-2): **Dado que** mi servicio está "terminado", **cuando** reporto una inconformidad con descripción y al menos una foto, **entonces** pasa a "en revisión" y el pago sigue retenido; sin foto o sin descripción el reporte no se registra.
+- **HU-13-CA-2** (RF-11-AC-11, RF-11-AC-5, RF-11-AC-6, RF-11-AC-7, RF-11-AC-10): **Dado que** un caso está "en revisión", **cuando** el administrador lo cierra, **entonces** debe elegir una de cuatro resoluciones (liberar al técnico, nueva visita sin costo, reembolso parcial o reembolso total) y el dinero se mueve según la elegida.
+- **HU-13-CA-3** (RF-11-AC-8, RF-11-AC-9): **Dado que** se guardó una resolución, **cuando** queda registrada, **entonces** el técnico y yo recibimos el resultado; un usuario que no es administrador no puede resolver el caso (403).
+
+### HU-14: Recibo, historial y calificación
+**Como** cliente, **quiero** recibir un recibo desglosado, consultar mis servicios anteriores y calificar al técnico, **para** tener comprobante de lo que pagué y ayudar a otros clientes a elegir.
+
+- **Prioridad:** Alta · **Estimación:** 8 · **Origen:** RF-13, RF-14
+- **HU-14-CA-1** (RF-13-AC-1, RF-13-AC-7): **Dado que** mi servicio pasa a "confirmado", **cuando** se registra, **entonces** se genera un recibo con folio único y el desglose (monto inicial, adicionales aprobados, comisión, descuento, total), y el total coincide exactamente con lo cobrado.
+- **HU-14-CA-2** (RF-14-AC-1, RF-14-AC-3, RF-14-AC-5): **Dado que** tengo servicios registrados, **cuando** consulto mi historial, **entonces** veo cada uno con trabajo, fecha, técnico, estado y monto, y puedo descargar en PDF el recibo de los confirmados; los de otro cliente responden 403.
+- **HU-14-CA-3** (RF-13-AC-2, RF-13-AC-3): **Dado que** mi servicio está "confirmado", **cuando** envío una calificación entera de 1 a 5 con o sin comentario de hasta 500 caracteres, **entonces** se guarda; fuera de esos límites se rechaza.
+- **HU-14-CA-4** (RF-13-AC-4, RF-13-AC-5): **Dado que** ya califiqué el servicio, o no está "confirmado", o no es mío, **cuando** intento calificarlo, **entonces** el sistema lo rechaza.
+- **HU-14-CA-5** (RF-13-AC-6): **Dado que** se guarda una calificación nueva, **cuando** se consulta el perfil del técnico, **entonces** su promedio es la media de todas sus calificaciones y se actualiza en menos de 5 segundos.
 
 ---
 
-#### US-07: Solicitud y cotización de trabajos especiales fuera de catálogo
-- **Historia:**  
-  Como **cliente con una necesidad no estándar**,  
-  quiero **solicitar una cotización particular o una visita de diagnóstico para trabajos especiales**,  
-  para **obtener una propuesta técnica y económica formal cuando el trabajo no encaja en el catálogo común**.
-- **Criterios de Aceptación:**
-  - **AC-07.1 (Ref: RF-18-AC-1, RF-18-AC-3):** Dado que el cliente selecciona "Otro trabajo sujeto a cotizar", cuando envía los detalles, el técnico puede responder con una cotización personalizada o marcar que "requiere visita de diagnóstico" con su costo asociado, requiriendo aprobación expresa del cliente.
-  - **AC-07.2 (Ref: RF-18-AC-4, RF-18-AC-5, RF-18-AC-7):** Cuando el técnico emite la cotización particular con alcance y condiciones, el cliente puede aceptarla (avanzando a la retención de pago) o rechazarla sin costo. El técnico no puede iniciar el servicio (`ON_THE_WAY`) sin aceptación previa (HTTP 409).
-- **Estimación:** 8 Story Points *(Justificación: Flujo asíncrono bidireccional de negociación, soporte para visitas de evaluación presencial y ramificación de reglas fuera de catálogo estándar).*
-- **Prioridad:** Media
+## EP-05: Accesibilidad y ayuda
+
+### HU-15: Modo simplificado
+**Como** adulto mayor con poca experiencia digital, **quiero** una versión de la aplicación con letras grandes y pocos pasos, **para** pedir un servicio yo solo sin equivocarme.
+
+- **Prioridad:** Alta · **Estimación:** 8 · **Origen:** RF-15, RNF-01, RNF-11
+- **HU-15-CA-1** (RF-15-AC-1, RF-15-AC-2): **Dado que** activé el modo simplificado, **cuando** cierro sesión y vuelvo a entrar, **entonces** sigue activo, y crear una solicitud me toma 3 pantallas como máximo.
+- **HU-15-CA-2** (RNF-01): **Dado que** estoy en modo simplificado, **cuando** veo cualquier pantalla, **entonces** el texto mide al menos 18 pt, los botones al menos 48×48 px y hay una sola acción principal.
+- **HU-15-CA-3** (RF-15-AC-6): **Dado que** voy a autorizar un pago, **cuando** llego al último paso, **entonces** veo en una sola pantalla el trabajo, el técnico, el horario y el total, y no se cobra hasta que confirmo.
+- **HU-15-CA-4** (RF-15-AC-3, RF-15-AC-4): **Dado que** un familiar solicita a mi nombre, **cuando** indica mi nombre y teléfono como contacto, **entonces** los avisos me llegan a mí sin que yo necesite una cuenta; si omite alguno de los dos datos, la solicitud no se crea.
+
+### HU-16: Ayuda de una persona y canal de dudas
+**Como** cliente, **quiero** un botón "Necesito ayuda" en todas las pantallas y la opción "Tengo dudas" ante un costo adicional, **para** hablar con una persona cuando no entiendo algo.
+
+- **Prioridad:** Media · **Estimación:** 5 · **Origen:** RF-21
+- **HU-16-CA-1** (RF-21-AC-1, RF-21-AC-2, RF-21-AC-3): **Dado que** estoy en cualquier pantalla, **cuando** pulso "Necesito ayuda", **entonces** dentro del horario de atención me comunico por llamada o WhatsApp con una persona, y fuera de horario veo el horario y puedo dejar un mensaje.
+- **HU-16-CA-2** (RF-21-AC-4, RF-21-AC-5): **Dado que** estoy viendo un costo adicional, **cuando** pulso "Tengo dudas", **entonces** se abre una conversación con el técnico y un administrador, el costo sigue pendiente y puedo aceptarlo o rechazarlo desde ahí.
+- **HU-16-CA-3** (RF-21-AC-7): **Dado que** hay una conversación de dudas, **cuando** la consulto, **entonces** no veo el teléfono del técnico ni él ve el mío.
 
 ---
 
-### ÉPICA 3: Ejecución de Servicio, Control de Cambios y Notificaciones (ESC)
+## Resumen del backlog
 
-#### US-08: Retención de pago en pasarela al confirmar contratación
-- **Historia:**  
-  Como **cliente**,  
-  quiero **que el importe total del servicio quede retenido en garantía mediante tarjeta, transferencia u OXXO**,  
-  para **asegurar al técnico que los fondos existen sin que se le entreguen hasta que el trabajo esté terminado a mi entera satisfacción**.
-- **Criterios de Aceptación:**
-  - **AC-08.1 (Ref: RF-10-AC-1, RF-10-AC-5, RNF-04):** Dado un servicio acordado por monto M y comisión C, cuando el cliente autoriza el cobro vía pasarela (tarjeta, transferencia u OXXO), el sistema bloquea los fondos en custodia (`escrow`) y transiciona el servicio a `ACCEPTED`. Se prohíbe taxativamente registrar transacciones en efectivo directo al técnico.
-  - **AC-08.2 (Ref: RF-10-AC-2, RNF-08):** Si la pasarela rechaza la transacción o el cliente no completa el depósito, el servicio permanece en `REQUESTED` sin cobrar ningún cargo. El endpoint de pago debe ser estrictamente idempotente ante reintentos de red.
-- **Estimación:** 8 Story Points *(Justificación: Integración técnica con API de pasarela de pagos externa, manejo de webhooks asíncronos para OXXO/transferencia y blindaje de idempotencia transaccional).*
-- **Prioridad:** Alta
+| ID | Historia | Épica | Prioridad | Puntos |
+|---|---|---|---|---|
+| HU-01 | Inicio de sesión sin contraseña | EP-01 | Alta | 5 |
+| HU-02a | Enviar documentos y acreditar experiencia | EP-01 | Alta | 5 |
+| HU-02b | Validar a un técnico | EP-01 | Alta | 3 |
+| HU-03 | Disponibilidad y cotizaciones del técnico | EP-01 | Alta | 5 |
+| HU-04 | Catálogo de trabajos y precios de referencia | EP-02 | Alta | 3 |
+| HU-05 | Crear una solicitud de servicio | EP-02 | Alta | 5 |
+| HU-06 | Consultar técnicos y cotización previa | EP-02 | Alta | 5 |
+| HU-07 | Contratar a un técnico | EP-02 | Alta | 5 |
+| HU-08 | Actualizar el estado del servicio | EP-03 | Alta | 3 |
+| HU-09 | Avisos por WhatsApp con respaldo por SMS | EP-03 | Alta | 13 |
+| HU-10 | Autorizar costos adicionales con evidencia | EP-03 | Alta | 8 |
+| HU-11a | Pagar y retener el pago | EP-04 | Alta | 8 |
+| HU-11b | Confirmar el trabajo y liberar el pago | EP-04 | Alta | 5 |
+| HU-12 | Recordatorio y liberación automática del pago | EP-04 | Media | 3 |
+| HU-13 | Reportar y resolver una inconformidad | EP-04 | Media | 8 |
+| HU-14 | Recibo, historial y calificación | EP-04 | Alta | 8 |
+| HU-15 | Modo simplificado | EP-05 | Alta | 8 |
+| HU-16 | Ayuda de una persona y canal de dudas | EP-05 | Media | 5 |
 
----
+| Prioridad | Historias | Puntos |
+|---|---|---|
+| Alta | 15 | 89 |
+| Media | 3 | 16 |
+| Baja | 0 | 0 |
+| **Total** | **18** | **105** |
 
-#### US-09: Seguimiento y avance de estados del servicio en tiempo real
-- **Historia:**  
-  Como **usuario (cliente o técnico)**,  
-  quiero **actualizar y visualizar los cambios de estado del servicio (`ACCEPTED` $\to$ `ON_THE_WAY` $\to$ `IN_PROGRESS` $\to$ `FINISHED`)**,  
-  para **tener certidumbre del avance físico del trabajo y resguardar la privacidad del domicilio**.
-- **Criterios de Aceptación:**
-  - **AC-09.1 (Ref: RF-07-AC-1, RF-07-AC-2, RF-07-AC-5):** El técnico asignado puede avanzar el estado únicamente en secuencia lineal permitida (`ACCEPTED` a `ON_THE_WAY`, de ahí a `IN_PROGRESS`, y finalmente a `FINISHED`). Cualquier salto o retroceso es rechazado por la API (HTTP 409/422). Todo cambio registra timestamp y usuario.
-  - **AC-09.2 (Ref: RNF-03, RF-07-AC-7):** La dirección física exacta del cliente es visible para el técnico únicamente a partir de `ACCEPTED` y hasta que el servicio llega a `FINISHED`. Usuarios ajenos que intenten consultar el detalle del servicio reciben HTTP 403.
-- **Estimación:** 5 Story Points *(Justificación: Máquina de estados formal con candados de seguridad en base de datos, auditoría de eventos y ofuscación condicional de datos privados de geolocalización).*
-- **Prioridad:** Alta
+## Orden sugerido por dependencias
 
----
+1. HU-01, HU-04 — acceso y catálogo; todo lo demás depende de ellos.
+2. HU-02a, HU-02b, HU-03 — técnicos validados con cotizaciones.
+3. HU-05, HU-06, HU-07 — solicitud, consulta y contratación.
+4. HU-11a — retención del pago (la de mayor riesgo técnico por la pasarela).
+5. HU-08, HU-09, HU-10 — ejecución, avisos y costos adicionales.
+6. HU-11b, HU-14 — confirmación con liberación, recibo y calificación.
+7. HU-15 — modo simplificado sobre el flujo ya construido.
+8. HU-12, HU-13, HU-16 — historias de prioridad Media: liberación automática, inconformidad y ayuda.
 
-#### US-10: Solicitud y aprobación explícita de costos adicionales con evidencia
-- **Historia:**  
-  Como **técnico en sitio**,  
-  quiero **solicitar autorización con fotos y descripción si descubro un imprevisto real durante la reparación**,  
-  para **cubrir refacciones o maniobras indispensables sin que el cliente sufra cobros no autorizados**.
-- **Criterios de Aceptación:**
-  - **AC-10.1 (Ref: RF-09-AC-1, RF-09-AC-2, RF-09-AC-8):** Estando el servicio en `IN_PROGRESS`, el técnico puede registrar un adicional adjuntando monto > 0, descripción y de 1 a 5 fotos de evidencia. Si falta foto o descripción, el sistema devuelve HTTP 422. En cualquier otro estado del servicio, la petición devuelve HTTP 409.
-  - **AC-10.2 (Ref: RF-09-AC-3, RF-09-AC-4, RF-09-AC-5, RD-02):** Si el cliente aprueba el adicional, se amplía el monto en custodia; si lo rechaza o no responde antes de que el técnico marque `FINISHED`, el adicional se descarta formalmente con costo $0 y el técnico está obligado a concluir lo pactado originalmente dejando la instalación segura.
-- **Estimación:** 8 Story Points *(Justificación: Flujo crítico del modelo de negocio; involucra subida de evidencia multimedia, ampliación de autorización financiera en pasarela y tratamiento de reglas por omisión).*
-- **Prioridad:** Alta
+## RF del SRS fuera de este backlog inicial
 
----
+Estos requerimientos siguen en el SRS; no tienen historia todavía y entrarían en una siguiente versión del backlog.
 
-#### US-11: Notificaciones críticas del servicio por WhatsApp con respaldo SMS
-- **Historia:**  
-  Como **cliente**,  
-  quiero **recibir alertas oportunas en WhatsApp y SMS ante cada cambio de estado o aviso importante**,  
-  para **mantenerme enterado del estado de mi servicio sin depender de estar mirando continuamente la aplicación web**.
-- **Criterios de Aceptación:**
-  - **AC-11.1 (Ref: RF-08-AC-1, RF-08-AC-4, RF-08-AC-6):** Ante cualquier transición de estado o solicitud de costo adicional, el sistema dispara en menos de 1 minuto un mensaje de WhatsApp al cliente con ID de servicio, trabajo, nuevo estado, fecha/hora y teléfono de soporte FairFix.
-  - **AC-11.2 (Ref: RF-08-AC-2, RF-08-AC-3):** Si el webhook de entrega de WhatsApp no confirma recepción tras 2 minutos, el despachador de eventos reenvía automáticamente el contenido vía SMS al mismo teléfono.
-- **Estimación:** 5 Story Points *(Justificación: Configuración de colas asíncronas de mensajería [Worker/Job], monitoreo de recibos de entrega y fallback automático a SMS).*
-- **Prioridad:** Alta
-
----
-
-### ÉPICA 4: Custodia de Pagos, Cierre, Garantía y Soporte Accesible (PCG)
-
-#### US-12: Confirmación de trabajo, liberación de fondos y recibo digital
-- **Historia:**  
-  Como **cliente satisfecho**,  
-  quiero **confirmar la finalización del trabajo desde la aplicación y calificar al técnico**,  
-  para **liberar el dinero al técnico, descargar mi recibo formal y ayudar a otros clientes con mi reseña**.
-- **Criterios de Aceptación:**
-  - **AC-12.1 (Ref: RF-10-AC-3, RF-13-AC-1, RF-13-AC-7):** Cuando el cliente presiona "Confirmar trabajo" sobre un servicio `FINISHED`, el servicio pasa a `CONFIRMED`, la pasarela transfiere los fondos al técnico, FairFix cobra su comisión y se genera de inmediato un recibo descargable en PDF con desglose aritméticamente exacto ($Total = M + A + C - D$).
-  - **AC-12.2 (Ref: RF-13-AC-2, RF-13-AC-6):** Tras confirmar, el cliente puede ingresar una calificación de 1 a 5 estrellas y un comentario (máximo 500 caracteres). Al guardarse, la calificación promedio pública del técnico se recalcula y refleja en menos de 5 segundos.
-- **Estimación:** 5 Story Points *(Justificación: Liquidación de órdenes en pasarela, generación de documentos PDF formateados y actualización reactiva de promedios en perfiles).*
-- **Prioridad:** Alta
-
----
-
-#### US-13: Apertura y resolución administrativa de inconformidades
-- **Historia:**  
-  Como **cliente inconforme**,  
-  quiero **reportar con evidencia si un trabajo quedó mal realizado antes de confirmar el pago**,  
-  para **mantener mi dinero retenido hasta que un administrador medie y resuelva una compensación o visita correctiva**.
-- **Criterios de Aceptación:**
-  - **AC-13.1 (Ref: RF-11-AC-1, RF-11-AC-4):** Mientras el servicio esté en `FINISHED`, el cliente puede emitir un reporte de inconformidad con motivo y al menos una foto. El servicio cambia automáticamente a `IN_REVIEW`, impidiendo cualquier confirmación o liberación de fondos.
-  - **AC-13.2 (Ref: RF-11-AC-5, AC-6, AC-7, AC-10):** El administrador revisa el expediente y aplica una de 4 resoluciones únicas: liberar al técnico, reembolso total al cliente, reembolso parcial pactado, o retorno a `IN_PROGRESS` para una visita de corrección sin costo de mano de obra.
-- **Estimación:** 8 Story Points *(Justificación: Lógica compleja de conciliación y reversión financiera en pasarela [reembolsos parciales y totales], gestión de expedientes y estados de contingencia).*
-- **Prioridad:** Alta
-
----
-
-#### US-14: Liberación automática de pago a las 72 horas con recordatorio
-- **Historia:**  
-  Como **técnico**,  
-  quiero **que el pago de un trabajo bien terminado se libere automáticamente si el cliente no responde tras 72 horas**,  
-  para **cobrar oportunamente por mi labor sin quedar bloqueado indefinidamente por olvido del usuario**.
-- **Criterios de Aceptación:**
-  - **AC-14.1 (Ref: RF-20-AC-1, RF-20-AC-4):** Cuando un servicio cumple 48 horas en estado `FINISHED` sin confirmación ni reporte de inconformidad, el sistema envía un recordatorio automático informando la fecha y hora exacta en que se liberará el cobro.
-  - **AC-14.2 (Ref: RF-20-AC-2, RF-20-AC-3):** Al transcurrir exactamente 72 horas en `FINISHED`, si no existe un caso de inconformidad abierto, un proceso en segundo plano transiciona el servicio a `CONFIRMED`, dispersa los fondos al técnico y genera el recibo digital.
-- **Estimación:** 3 Story Points *(Justificación: Implementación de tareas programadas tipo Cron/Scheduler con comprobación estricta de condiciones de frontera y exclusión de disputas).*
-- **Prioridad:** Media
-
----
-
-#### US-15: Flujo de contratación en modo simplificado para adultos mayores
-- **Historia:**  
-  Como **adulto mayor o familiar que solicita en su nombre**,  
-  quiero **una interfaz con texto grande, contraste alto, solicitud en 3 pasos y opción de soporte telefónico visible**,  
-  para **solucionar problemas de plomería o electricidad en mi casa sin frustrarme con la tecnología**.
-- **Criterios de Aceptación:**
-  - **AC-15.1 (Ref: RF-15-AC-1, RF-15-AC-2, RNF-01):** Al activar el modo simplificado, la tipografía tiene un mínimo de 18 pt (24 px CSS), los botones miden al menos 48×48 px con espaciado de 8 px, y el flujo completo para solicitar servicio toma máximo 3 pantallas sin tecnicismos visuales.
-  - **AC-15.2 (Ref: RF-15-AC-3, RF-15-AC-5, RF-21-AC-1):** Permite registrar nombre y teléfono de un contacto familiar para recibir réplica de todas las notificaciones vía WhatsApp/SMS. En todas las pantallas permanece visible el botón de emergencia "Necesito ayuda" para enlace telefónico directo.
-- **Estimación:** 5 Story Points *(Justificación: Adaptabilidad responsiva con diseño accesible estricto [WCAG 2.1 AA], maquetación de flujos cortos condensados y gestión de datos de terceros).*
-- **Prioridad:** Alta
-
----
-
-## 4. Instrucciones para GitHub Projects (Parte 2 de la actividad)
-
-Para transferir este Product Backlog al tablero de **GitHub Projects** del equipo (`TC5062-[Num_equipo]`):
-
-1. **Creación del Proyecto:**
-   - En el repositorio, entrar a la pestaña **Projects** y crear un proyecto con plantilla de tipo **Board** (Kanban).
-   - Columnas recomendadas: `Backlog`, `Ready (Sprint)`, `In Progress`, `In Review / Test`, `Done`.
-
-2. **Creación de Issues:**
-   - Crear un **GitHub Issue** por cada historia de usuario (`US-01` a `US-15`).
-   - **Title:** `US-XX: [Título de la historia]` (ejemplo: `US-01: Inicio de sesión con teléfono y código de acceso sin contraseña`).
-   - **Description:** Pegar la redacción formal de la historia (*Como... quiero... para...*) y la sección completa de *Criterios de Aceptación* con sus IDs del SRS.
-   - **Labels:** Crear y asociar etiquetas consistentes:
-     - Épica: `epic:AIC`, `epic:CPC`, `epic:ESC`, `epic:PCG`.
-     - Prioridad: `priority:Alta`, `priority:Media`, `priority:Baja`.
-     - Estimación: `sp:3`, `sp:5`, `sp:8`.
-     - Tipo: `user-story`.
-
-3. **Captura del Tablero:**
-   - Una vez cargados los 15 issues en la columna `Backlog`, tomar la captura de pantalla completa del tablero y guardarla con el nombre exacto: `backlog_screenshot.png`.
+| RF | Tema | Prioridad en el SRS |
+|---|---|---|
+| RF-12 | Retraso, cancelación o inasistencia del técnico | Media |
+| RF-18 | Trabajos especiales y visita de diagnóstico (y trabajos parametrizables de RF-02 y RF-16) | Media |
+| RF-19 | Cancelación por el cliente | Media |
+| RF-23 | Suspensión y reactivación de técnicos | Media |
+| RF-24 | Pagos del técnico | Media |
+| RF-22 | Solicitud asistida por teléfono | Baja |
+| RF-25 | Garantía posterior al servicio | Baja |
+| RF-26 | Promociones | Baja |
+| RF-27 | Indicadores de éxito | Baja |
